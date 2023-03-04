@@ -11,6 +11,10 @@
     
     env\Scripts\activate.bat
 
+##### activate virtual environment for linux
+
+    source venv/bin/activate
+
 ##### build the project --- Install python packages from requirement
 
     pip install -r requirements.txt
