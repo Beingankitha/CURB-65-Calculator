@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container">
+
+<h1>Enter Patient Information</h1>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<form method="POST" class="form-horizontal" name="patient-form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="{{ form.patient_id.id_for_label }}">{{ form.patient_id.label }}</label>
+        <div class="col-sm-10">
+            {{ form.patient_id|add_class:"form-control"|attr:"required" }}</br>
+            {% for error in form.patient_id.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="{{ form.dob.id_for_label }}">{{ form.dob.label }}</label>
+        <div class="col-sm-10">
+            {{ form.dob|add_class:"form-control"|attr:"required type='date'"}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="{{ form.confusion.id_for_label }}">{{ form.confusion.label }}</label>
+        <div class="col-sm-10">
+            {{ form.confusion }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="{{ form.blood_urea.id_for_label }}">{{ form.blood_urea.label }}</label>
+        <div class="col-sm-10">
+            {{ form.blood_urea|add_class:"form-control"|attr:"required" }}<br/>
+            {% for error in form.blood_urea.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="{{ form.respiratory_rate.id_for_label }}">{{ form.respiratory_rate.label }}</label>
+        <div class="col-sm-10">
+            {{ form.respiratory_rate|add_class:"form-control"|attr:"required" }}<br/>
+            {% for error in form.respiratory_rate.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="{{ form.systolic_bp.id_for_label }}">{{ form.systolic_bp.label }}</label>
+        <div class="col-sm-10">
+            {{ form.systolic_bp|add_class:"form-control"|attr:"required" }}<br/>
+            {% for error in form.systolic_bp.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="{{ form.diastolic_bp.id_for_label }}">{{ form.diastolic_bp.label }}</label>
+        <div class="col-sm-10">
+            {{ form.diastolic_bp|add_class:"form-control"|attr:"required" }}<br/>
+            {% for error in form.diastolic_bp.errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-info">Calculate Score</button>
+            <button type="reset" class="btn btn-info">Reset</button>
+        </div>
+    </div>
+</form>
+</div>
+{% endblock %}
+

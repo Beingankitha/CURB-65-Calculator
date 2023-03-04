@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+            $('#patient').DataTable();
+        });
+
+    </script>
+
+    <div class="container">
+        <div class="dataTables_wrapper container-fluid dt-bootstrap4">
+            <h1>Search Patient Information</h1><br/><br/>
+            <table id="patient" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Patient ID</th>
+                        <th>Date of birth</th>
+                        <th>Confusion</th>
+                        <th>Blood urea</th>
+                        <th>Respiratory rate</th>
+                        <th>Systolic blood pressure </th>
+                        <th>Systolic blood pressure </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in patient %}
+                        <tr>
+                            <td >{{ forloop.counter }}</td>
+                            <td>{{ p.patient_id }}</td>
+                            <td>{{ p.dob }}</td>
+                            <td>{{ p.confusion }}</td>
+                            <td>{{ p.blood_urea }}</td>
+                            <td>{{ p.respiratory_rate }}</td>
+                            <td>{{ p.systolic_bp }}</td>
+                            <td>{{ p.diastolic_bp }}</td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>            
+    </div>
+
+{% endblock %}
